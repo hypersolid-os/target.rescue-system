@@ -1,0 +1,4 @@
+assets/*
+tmp/*
+dist/*
+.hidden/*
