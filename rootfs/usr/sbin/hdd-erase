@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "executing HDD WIPING of $1"
+
+shred -f -v --random-source=/dev/urandom -n1 $1

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "unlocking SSD $1"
+
+hdparm --security-unlock $2 $1

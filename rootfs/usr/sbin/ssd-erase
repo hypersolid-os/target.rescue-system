@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "executing SSD SERCURE ERASE of $1"
+
+hdparm --user-master u --security-set-pass erase $1
+hdparm --user-master u --security-erase erase $1
+hdparm -I $1
