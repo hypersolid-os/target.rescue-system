@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+# extract vars
+SRC_FILE="$1"
+DEST_DEVICE="$2"
+
+# source file exists ?
+if [ ! -f "$SRC_FILE" ]; then
+    echo "source file $SRC_FILE does not exist"
+    exit 1
+fi
+
+# valid device ?
+if [ ! -b "$DEST_DEVICE" ]; then
+    if [ -e "$DEST_DEVICE" ]; then
+        echo "target device $DEST_DEVICE is not a block device!"
+        exit 1
+    else
+        echo "target device $DEST_DEVICE does not exist!"
+        exit 1
+    fi
+fi
+
+echo "writing gz compressed file [$SRC_FILE] to [$DEST_DEVICE]"
+
+# extract image and write to disk
+gzip -d -c $SRC_FILE | dd bs=4M status=progress of=$DEST_DEVICE
+
+# create new uuid's and rewrite secondary GPT table to the end of the disk
+sgdisk -G $DEST_DEVICE && sync

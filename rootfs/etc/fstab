@@ -1,0 +1,2 @@
+# data partition (optional)
+PARTLABEL=data        /mnt/data    ext4    noauto,nofail,x-systemd.device-timeout=2s,x-systemd.automount,x-systemd.mount-timeout=2s,noatime,rw  0  1

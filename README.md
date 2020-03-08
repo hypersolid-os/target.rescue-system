@@ -12,6 +12,7 @@ Features
 * keymap set via `/etc/default/keyboard` - default `de`
 * loadable via PXE or usb storage
 * x64 only (default)
+* optional data storage on `/mnt/data` (mounted via partlabel "data")
 
 Additional utilities/scripts
 ------------------------------------------
@@ -54,14 +55,40 @@ ssd-erase <device>
 ssd-erase /dev/sdb
 ```
 
-## Extlinux Config ##
+
+#### cpsysimg ####
+
+Write a gz compressed, gpt based disk image to block device
+
+**Usage**
+
+```bash
+cpsysimg <file> <device>
+```
+
+**Example**
+
+```bash
+cpsysimg /mnt/data/boot.img.gz /dev/sdb
+```
+
+USB storage boot
+----------------------------
+
+### Partition layout ###
+
+One storage partition contains the partlabel `system` to identify the system partition
+
+
+
+### Extlinux Config ###
 
 ```
 DEFAULT rescue-linux
   SAY Now booting the kernel from SYSLINUX...
 LABEL rescue-linux
   KERNEL ../kernel.img
-  APPEND root=PARTUUID=927c0d1c-5f20-46d3-83b7-e3d3501e7e19 ro net.ifnames=0 biosdevname=0
+  APPEND root=PARTLABEL=system ro net.ifnames=0 biosdevname=0
   INITRD ../initramfs.img
 ```
 
