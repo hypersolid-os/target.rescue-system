@@ -1,5 +1,10 @@
 sg
+sr_mod
 libata
+pata_acpi
+scsi_mod
+cdrom
+isofs
 sd_mod
 usb_storage
 loop
@@ -10,6 +15,11 @@ nvme_core
 usbcore
 ahci
 xhci_pci
-libahci
 fat
 vfat
+virtio
+virtio_ring
+virtio_pci
+virtio_net
+virtio_scsi
+virtio_console

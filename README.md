@@ -88,7 +88,7 @@ DEFAULT rescue-linux
   SAY Now booting the kernel from SYSLINUX...
 LABEL rescue-linux
   KERNEL ../kernel.img
-  APPEND root=PARTLABEL=system ro net.ifnames=0 biosdevname=0
+  APPEND root=PARTLABEL=rescue-system pstorage=PARTLABEL=rescue-conf ro net.ifnames=0 biosdevname=0
   INITRD ../initramfs.img
 ```
 
