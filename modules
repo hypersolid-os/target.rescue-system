@@ -2,6 +2,7 @@ sg
 sr_mod
 libata
 pata_acpi
+ata_generic
 scsi_mod
 cdrom
 isofs
@@ -12,11 +13,18 @@ overlay
 squashfs
 ext4
 nvme_core
-usbcore
 ahci
 xhci_pci
+ohci_pci
+ehci_pci
 fat
 vfat
+usbcore
+uhci_hcd
+ehci_hcd
+usbhid
+hid_generic
+hid_lenovo
 virtio
 virtio_ring
 virtio_pci
