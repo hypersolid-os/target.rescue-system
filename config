@@ -1,1 +1,5 @@
+# 64bit only
 CONF_ARCH=amd64
+
+# include intel+amd microcode
+CONF_MICROCODE=intel+amd

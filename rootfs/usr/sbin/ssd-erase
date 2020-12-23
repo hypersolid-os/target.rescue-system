@@ -2,8 +2,38 @@
 
 set -e
 
-echo "executing SSD SERCURE ERASE of $1"
+# @see https://wiki.archlinux.org/index.php/Solid_state_drive/Memory_cell_clearing
 
-hdparm --user-master u --security-set-pass erase $1
-hdparm --user-master u --security-erase erase $1
-hdparm -I $1
+# sata secure ersase
+sata_erase(){
+    echo ">> sata secure erase on $1"
+    hdparm --user-master u --security-set-pass erase $1
+    hdparm --user-master u --security-erase erase $1
+    hdparm -I $1
+}
+
+# nvme erase
+nvme_erase(){
+    echo ">> nvme erase on $1"
+
+    # erase supported ?
+    nvme id-ctrl -H $1
+
+    # run erase
+    nvme format $1 --ses=1
+}
+
+# message
+echo ">> SSD SERCURE ERASE of $1"
+echo ">> system will enter SUSPEND in 5s to unfreeze the drives..press the power button to continue"
+sleep 5
+
+# put system to sleep to remove lock/frozen state
+echo -n mem > /sys/power/state
+
+# nvme or sata ?
+if [[ $1 =~ "nvme" ]]; then
+    nvme_erase $1
+else
+    sata_erase $1
+fi

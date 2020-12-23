@@ -13,6 +13,7 @@ overlay
 squashfs
 ext4
 nvme_core
+nvme
 ahci
 xhci_pci
 ohci_pci
