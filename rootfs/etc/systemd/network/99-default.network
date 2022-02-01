@@ -1,0 +1,10 @@
+[Match]
+Name=*
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+DHCP=ipv4
+LinkLocalAddressing=no
+IPv6AcceptRA=no
