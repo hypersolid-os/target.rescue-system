@@ -15,9 +15,9 @@ mkdir /mnt/data
 systemctl enable acpid.service
 
 # systemd network management
-systemctl disable dhcpcd.service
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
+systemctl disable smartmontools.service
 
 # systemd managed resolve.conf
 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
